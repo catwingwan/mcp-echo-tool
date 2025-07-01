@@ -8,4 +8,7 @@ def echo(message: str) -> str:
     return f"You said: {message}"
 
 if __name__ == "__main__":
-    mcp.run()
+    # Run the HTTP server on Render's expected port
+    import os
+    port = int(os.environ.get("PORT", 10000))
+    mcp.run_http(port=port)

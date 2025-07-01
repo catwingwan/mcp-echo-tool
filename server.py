@@ -1,4 +1,4 @@
-from modelcontextprotocol import Tool, Server, Input, Output
+from mcp import Tool, Server, Input, Output
 
 @Tool(name="echo", description="Echoes back what the user says.")
 def echo_tool(input: Input) -> Output:

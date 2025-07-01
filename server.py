@@ -1,4 +1,7 @@
-from mcp import Tool, Server, Input, Output
+from mcp.tool import Tool
+from mcp.server import Server
+from mcp.types import Input, Output
+
 
 @Tool(name="echo", description="Echoes back what the user says.")
 def echo_tool(input: Input) -> Output:

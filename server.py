@@ -1,12 +1,11 @@
-from mcp.tool import Tool
-from mcp.server import Server
-from mcp.types import Input, Output
+from fastmcp import FastMCP
 
+mcp = FastMCP("Echo Tool")
 
-@Tool(name="echo", description="Echoes back what the user says.")
-def echo_tool(input: Input) -> Output:
-    return Output(text=f"You said: {input.text}")
+@mcp.tool()
+def echo(message: str) -> str:
+    """Echoes back what the user says."""
+    return f"You said: {message}"
 
 if __name__ == "__main__":
-    # Start HTTP server on port 5000
-    Server.register(echo_tool).run_http(port=5000)
+    mcp.run()

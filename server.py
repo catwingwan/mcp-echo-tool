@@ -1,4 +1,5 @@
 from fastmcp import FastMCP
+import os
 
 mcp = FastMCP("Echo Tool")
 
@@ -8,7 +9,7 @@ def echo(message: str) -> str:
     return f"You said: {message}"
 
 if __name__ == "__main__":
-    # Run the HTTP server on Render's expected port
-    import os
-    port = int(os.environ.get("PORT", 10000))
-    mcp.run_http(port=port)
+    port = int(os.environ.get("PORT", 8000))
+    # Use HTTP transport so Render can expose a public URL
+    mcp.run(transport="http", host="0.0.0.0", port=port)
+

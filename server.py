@@ -1,17 +1,24 @@
-from fastmcp import FastMCP
-import os
+from mcp import Tool, Server, Input, Output
+import echo_tool
+import summarizer_tool
 
-mcp = FastMCP("Echo Tool")
+echo = Tool(
+    name="echo",
+    description="Repeats your message",
+    inputs={"message": Input(type="string")},
+    outputs={"result": Output(type="string")},
+    run=echo_tool.run
+)
 
-@mcp.tool()
-def echo(message: str) -> str:
-    """Echoes back what the user says."""
-    return f"You said: {message}"
+summarizer = Tool(
+    name="summarize",
+    description="Summarizes a block of text",
+    inputs={"text": Input(type="string")},
+    outputs={"summary": Output(type="string")},
+    run=summarizer_tool.run
+)
 
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8000))
-    # Use HTTP transport so Render can expose a public URL
-    # mcp.run(transport="http", host="0.0.0.0", port=port) ## old
-    mcp.run(transport="streamable-http", host="0.0.0.0", port=port)
+mcp = Server(tools=[echo, summarizer])
 
-
+# IMPORTANT: Set streamable transport for Render
+mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)

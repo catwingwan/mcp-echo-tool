@@ -1,5 +1,4 @@
-from mcp.tool import Tool, Input, Output
-from mcp.server import Server
+from modelcontextprotocol import Tool, Input, Output, Server
 import echo_tool
 import summarizer_tool
 
@@ -19,5 +18,5 @@ summarize = Tool(
     run=summarizer_tool.run
 )
 
-mcp = Server(tools=[echo, summarize])
-mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)
+server = Server(tools=[echo, summarize])
+server.run(transport="streamable-http", host="0.0.0.0", port=8000)

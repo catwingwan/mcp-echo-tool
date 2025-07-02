@@ -1,4 +1,5 @@
-from modelcontextprotocol import Tool, Input, Output, Server
+from mcp import Tool, Input, Output
+from mcp.server import Server
 import echo_tool
 import summarizer_tool
 

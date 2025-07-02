@@ -1,4 +1,4 @@
-from mcp import Tool, Input, Output
+from mcp.tool import Tool, Input, Output
 from mcp.server import Server
 import echo_tool
 import summarizer_tool
@@ -11,7 +11,7 @@ echo = Tool(
     run=echo_tool.run
 )
 
-summarizer = Tool(
+summarize = Tool(
     name="summarize",
     description="Summarizes a block of text",
     inputs={"text": Input(type="string")},
@@ -19,7 +19,5 @@ summarizer = Tool(
     run=summarizer_tool.run
 )
 
-mcp = Server(tools=[echo, summarizer])
-
-# IMPORTANT: Set streamable transport for Render
+mcp = Server(tools=[echo, summarize])
 mcp.run(transport="streamable-http", host="0.0.0.0", port=8000)

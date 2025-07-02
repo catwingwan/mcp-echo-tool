@@ -1,2 +1,3 @@
-git+https://github.com/modelcontextprotocol/python-sdk.git#egg=modelcontextprotocol
+gigit+https://github.com/modelcontextprotocol/python-sdk.git#egg=mcp
+
 
